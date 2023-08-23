@@ -1,0 +1,213 @@
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  --primaryLightColor: #d4e6a5;
+  --primaryColor: #476a2e;
+  --primaryDarkColor: #c02c03;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --mainBackground: #f1f5f8;
+  --mainOverlay: rgba(35, 10, 36, 0.4);
+  --mainBlack: #222;
+  --mainGrey: #ececec;
+  --darkGrey: #afafaf;
+  --mainRed: #bd0303;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 0.3rem;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+  --mainBorderRadius: 0.25rem;
+  --smallWidth: 85vw;
+  --maxWidth: 40rem;
+  --fullWidth: 1170px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: var(--mainBackground);
+  color: var(--mainBlack);
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+a {
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--mainSpacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 2rem;
+  text-align: center;
+}
+h3 {
+  font-size: 1rem;
+  margin-bottom: 0px;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  font-size: 16px;
+}
+li {
+  display: inline-block;
+}
+.section {
+  width: 90vw;
+  margin: 0 auto;
+}
+.btn {
+  background: var(--primaryColor);
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: var(--mainBorderRadius);
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 4px;
+  margin: 10px 0px;
+  transition: var(--mainTransition);
+}
+.btn:hover {
+  background: var(--primaryLightColor);
+}
+.loading {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 10px solid transparent;
+  border-top: 8px solid var(--primaryColor);
+  animation: spinner 0.5s linear infinite;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+main {
+  width: 90vw;
+  margin: 0px auto;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  box-shadow: var(--darkShadow);
+  background: var(--mainWhite);
+}
+nav a {
+  color: black;
+  letter-spacing: 2px;
+  font-size: 18px;
+  margin: 0px 18px;
+  text-transform: capitalize;
+}
+.nav-center {
+  width: 85vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-cont img {
+  width: 12rem;
+}
+.cocktail-cont {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin: 60px auto;
+}
+.cocktail {
+  border-radius: var(--mainBorderRadius);
+  box-shadow: var(--lightShadow);
+}
+.cocktail:hover {
+  box-shadow: var(--darkShadow);
+  transition: var(--mainTransition);
+}
+.cocktail p {
+  color: var(--darkGrey);
+  font-weight: 300;
+  margin-top: 5px;
+}
+.cocktail img {
+  border-top-left-radius: var(--mainBorderRadius);
+  border-top-right-radius: var(--mainBorderRadius);
+  object-fit: cover;
+  width: 100%;
+  height: 20rem;
+}
+.cocktail-footer {
+  padding: 20px 20px 15px 20px;
+}
+form {
+  max-width: 640px;
+  height: 145px;
+  color: var(--primaryColor);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  padding: 30px 40px;
+  margin: 100px auto;
+  text-transform: capitalize;
+  border-radius: var(--mainBorderRadius);
+  box-shadow: var(--darkShadow);
+  background: var(--mainWhite);
+}
+#form-text {
+  width: 100%;
+  height: 35px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0px 15px;
+  margin-top: 20px;
+  background: var(--mainBackground);
+  border: none;
+  border-radius: var(--mainBorderRadius);
+}
+.about-text {
+  max-width: 640px;
+  margin: 100px auto 0px auto;
+  text-align: center;
+}
+.about-text p {
+  margin-bottom: 1.25rem;
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 30px;
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 1030px) {
+  .cocktail-cont {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 800px) {
+  .cocktail-cont {
+    grid-template-columns: 1fr;
+  }
+}
