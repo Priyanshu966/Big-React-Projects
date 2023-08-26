@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from "../logo.svg";
 
 const Navbar = () => {
   return (
@@ -6,7 +7,7 @@ const Navbar = () => {
       <div className="nav-center">
         <div className="logo-cont">
           <Link to="/">
-            <img src="./logo/logo.svg" />
+            <img src={logo} />
           </Link>
         </div>
         <ul className="links-cont">
