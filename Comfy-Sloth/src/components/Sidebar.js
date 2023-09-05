@@ -7,7 +7,8 @@ import CartButtons from "./CartButtons";
 import { useProductsContext } from "../context/products_context";
 
 const Sidebar = () => {
-  const { isSidebarOpen } = useProductsContext;
+  const { isSidebarOpen, sidebarClose } = useProductsContext();
+
   return (
     <Wrapper>
       <aside className={isSidebarOpen ? `sidebar show-sidebar` : `sidebar`}>
@@ -15,7 +16,7 @@ const Sidebar = () => {
           <Link to="/">
             <img src={logo} alt="comfy-sloth" />
           </Link>
-          <button className="sidebar-toggle">
+          <button className="sidebar-toggle" onClick={sidebarClose}>
             <FaTimes />
           </button>
         </div>
@@ -24,7 +25,9 @@ const Sidebar = () => {
             const { id, text, url } = item;
             return (
               <li key={id}>
-                <Link to={url}>{text}</Link>
+                <Link to={url} onClick={sidebarClose}>
+                  {text}
+                </Link>
               </li>
             );
           })}

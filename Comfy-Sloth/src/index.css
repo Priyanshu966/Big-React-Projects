@@ -151,3 +151,15 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
+@media screen and (max-width: 798px) {
+  p {
+    font-size: 0.86rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+}

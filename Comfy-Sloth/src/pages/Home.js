@@ -1,8 +1,14 @@
 import styled from "styled-components";
-import { Hero } from "../components";
+import { Hero, Services, Contact } from "../components";
 
 const Home = () => {
-  return <h2>Home</h2>;
+  return (
+    <main>
+      <Hero />
+      <Services />
+      <Contact />
+    </main>
+  );
 };
 
 export default Home;

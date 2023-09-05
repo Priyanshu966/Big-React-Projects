@@ -7,13 +7,15 @@ import CartButtons from "./CartButtons";
 import { useProductsContext } from "../context/products_context";
 
 const Navbar = () => {
-  const { sidebarOpen } = useProductsContext;
+  const { sidebarOpen } = useProductsContext();
 
   return (
     <NavContainer>
       <div className="nav-center">
         <div className="logo-cont">
-          <img src={logo} alt="comfy-sloth" />
+          <Link to="/">
+            <img src={logo} alt="comfy-sloth" />
+          </Link>
           <button className="nav-toggle" onClick={sidebarOpen}>
             <FaBars />
           </button>
@@ -43,6 +45,7 @@ const NavContainer = styled.nav`
     justify-content: space-between;
     align-items: center;
     width: 90vw;
+    max-width: var(--max-width);
     margin: 0 auto;
   }
   .logo-cont {
