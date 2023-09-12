@@ -24,7 +24,6 @@ const SingleProduct = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
-    console.log(single_product);
   }, [id]);
 
   if (loading) {
@@ -56,8 +55,8 @@ const SingleProduct = () => {
           <div className="content">
             <h2>{name}</h2>
             <Stars stars={stars} reviews={reviews} />
-            <h5>${price / 100}</h5>
-            <p>{description}</p>
+            <h5 className="price">${price / 100}</h5>
+            <p className="desc">{description}</p>
             <p className="info">
               <span>available :</span>
               {stock > 0 ? "in stock" : "out of stock"}
@@ -71,7 +70,7 @@ const SingleProduct = () => {
               {company}
             </p>
             <hr />
-            {stock > 0 && <AddToCart />}
+            {stock > 0 && <AddToCart product={single_product} />}
           </div>
         </div>
       </section>
@@ -79,5 +78,34 @@ const SingleProduct = () => {
   );
 };
 
-const Wrapper = styled.main``;
+const Wrapper = styled.main`
+  .product-center {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
+  .price {
+    font-size: 1.25rem;
+    color: var(--clr-primary-5);
+  }
+  .desc {
+    line-height: 2;
+    max-width: 45em;
+  }
+  .info {
+    text-transform: capitalize;
+    width: 300px;
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    span {
+      font-weight: 700;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .product-center {
+      grid-template-columns: 1fr;
+    }
+  }
+`;
 export default SingleProduct;

@@ -3,9 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { ProductsProvider } from "./context/products_context";
+import { FiltersProvider } from "./context/filters_context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ProductsProvider>
-    <App />
+    <FiltersProvider>
+      <App />
+    </FiltersProvider>
   </ProductsProvider>
 );
