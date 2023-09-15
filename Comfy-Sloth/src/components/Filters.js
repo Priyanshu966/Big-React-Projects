@@ -24,7 +24,6 @@ const Filters = () => {
   const categories = getUniqueValue(all_products, "category");
   const colors = getUniqueValue(all_products, "colors");
   const companies = getUniqueValue(all_products, "company");
-  console.log(colors);
 
   return (
     <Wrapper>
@@ -78,6 +77,7 @@ const Filters = () => {
               if (item == "all") {
                 return (
                   <button
+                    key={index}
                     className={item == color ? "all-btn active" : "all-btn"}
                     name="color"
                     data-color={item}

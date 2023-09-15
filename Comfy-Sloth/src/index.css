@@ -154,6 +154,13 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
+.page-100 {
+  min-height: calc(100vh - 10rem);
+  padding: 5rem 0;
+}
+.page {
+  min-height: calc(100vh - (20vh + 10rem));
+}
 @media screen and (max-width: 798px) {
   p {
     font-size: 0.86rem;

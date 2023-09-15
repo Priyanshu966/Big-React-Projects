@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
 const Stars = ({ stars, reviews }) => {
-  console.log(stars);
   return (
     <Wrapper>
       <span>

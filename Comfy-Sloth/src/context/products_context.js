@@ -30,11 +30,9 @@ const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const sidebarOpen = () => {
     dispatch({ type: SIDEBAR_OPEN });
-    console.log("open");
   };
   const sidebarClose = () => {
     dispatch({ type: SIDEBAR_CLOSE });
-    console.log("close");
   };
 
   const fetchProducts = async () => {
@@ -43,7 +41,6 @@ const ProductsProvider = ({ children }) => {
       const response = await axios.get(url);
       const products = response.data;
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
-      console.log(products);
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
