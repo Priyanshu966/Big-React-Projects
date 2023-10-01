@@ -1,11 +1,18 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { FormRow, FormRowSelect } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
-import { handleChange, clearValue, createJob } from "../../features/jobSlice";
+import {
+  handleChange,
+  clearValue,
+  createJob,
+  editJob,
+} from "../../features/job/jobSlice";
 
 const AddJob = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((store) => store.user);
   const {
     isLoading,
     position,
@@ -30,8 +37,28 @@ const AddJob = () => {
       toast.error("Please fill out all fields");
       return;
     }
+    if (isEditing) {
+      dispatch(
+        editJob({
+          jobId: editJobId,
+          job: { position, company, jobLocation, jobType, status },
+        })
+      );
+      return;
+    }
     dispatch(createJob({ position, company, jobLocation, jobType, status }));
   };
+
+  useEffect(() => {
+    if (!isEditing) {
+      dispatch(
+        handleChange({
+          name: "jobLocation",
+          value: user.location,
+        })
+      );
+    }
+  }, []);
 
   return (
     <Wrapper>
