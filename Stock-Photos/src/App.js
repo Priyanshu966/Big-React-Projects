@@ -3,7 +3,7 @@ import axios from "axios";
 import Photo from "./Photo";
 import { FaSearch } from "react-icons/fa";
 
-const clientID = `?client_id=${process.env.REACT_APP_ACCESS_KEY}`;
+const clientID = `?client_id=CXhdhtW7EAn0V58iUW8tIqkUQdXUeB6ifw2mreTmDOw`;
 const mainUrl = `https://api.unsplash.com/photos/`;
 const searchUrl = `https://api.unsplash.com/search/photos/`;
 
@@ -12,7 +12,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [query, setQuery] = useState("");
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   const fetchPhotos = async () => {
     setIsLoading(true);
@@ -25,9 +25,20 @@ const App = () => {
       url = `${mainUrl}${clientID}${urlPage}`;
     }
     try {
-      const resp = await axios.get(`${mainUrl}${clientID}`);
-      console.log(resp.data);
-      setPhotos(resp.data);
+      const resp = await axios.get(url);
+      setPhotos((oldPhotos) => {
+        if (query && page == 1) {
+          console.log("first");
+          console.log(resp.data.results);
+          return [...resp.data.results];
+        } else if (query) {
+          console.log("second ");
+          console.log(resp.data.results);
+          return [...oldPhotos, ...resp.data.results];
+        } else {
+          return [...oldPhotos, ...resp.data];
+        }
+      });
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -38,26 +49,36 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!query) {
+      return;
+    }
+    if (page === 1) {
+      fetchPhotos();
+    }
+    setPage(1);
   };
 
   useEffect(() => {
     fetchPhotos();
+  }, [page]);
+
+  useEffect(() => {
+    const event = window.addEventListener("scroll", () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.scrollHeight - 2
+      ) {
+        if (!isLoading) {
+          setPage((oldPage) => {
+            let newPage = oldPage + 1;
+            return newPage;
+          });
+        }
+      }
+    });
+    return () => window.removeEventListener("scroll", event);
   }, []);
 
-  if (isLoading) {
-    return (
-      <main>
-        <div className="loading"></div>
-      </main>
-    );
-  }
-  if (isError) {
-    return (
-      <main>
-        <h2>There was an error....</h2>
-      </main>
-    );
-  }
   return (
     <main>
       <section className="search">
