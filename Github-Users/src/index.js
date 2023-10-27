@@ -8,9 +8,10 @@ import {GithubProvider} from "./context/context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Auth0Provider
-    domain="dev-mcy6c51y3c4sdthb.us.auth0.com"
-    clientId="65iBniYubKKhgHtmj5xVjdf733khkNcJ"
+    domain={process.env.REACT_APP_DOMAIN}
+    clientId={process.env.REACT_APP_CLIENT}
     redirectUri={window.location.origin}
+    cacheLocation="localstorage"
   >
     <GithubProvider>
       <App />

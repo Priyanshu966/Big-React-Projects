@@ -1,30 +1,34 @@
-import {useState} from 'react';
-import styled from 'styled-components';
-import { MdSearch } from 'react-icons/md';
-import { useGithubContext } from '../context/context';
+import {useState} from "react";
+import styled from "styled-components";
+import {MdSearch} from "react-icons/md";
+import {useGithubContext} from "../context/context";
 const Search = () => {
-  const {isLoading,requests} = useGithubContext();
-  const [user,setUser] = useState("");
+  const {isLoading, requests, fetchGithubUsers, isError} = useGithubContext();
+  const [user, setUser] = useState("");
 
- 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-  }
-    return (
-    <section className='section'>
-      <Wrapper className='section-center'>
-       
+    fetchGithubUsers(user);
+  };
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        {isError.show && (
+          <ErrorWrapper>
+            <p>{isError.msg}</p>
+          </ErrorWrapper>
+        )}
         <form onSubmit={handleSubmit}>
-          <div className='form-control'>
+          <div className="form-control">
             <MdSearch />
             <input
-              type='text'
-              placeholder='enter github user'
+              type="text"
+              placeholder="enter github user"
               value={user}
               onChange={(e) => setUser(e.target.value)}
             />
             {requests > 0 && !isLoading && (
-              <button type='submit'>search</button>
+              <button type="submit">search</button>
             )}
           </div>
         </form>

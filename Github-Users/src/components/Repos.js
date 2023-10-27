@@ -58,8 +58,6 @@ const Repos = () => {
       return {label: name, value: forks};
     });
 
-  console.log(stars);
-
   return (
     <section className="section">
       <Wrapper className="section-center">
